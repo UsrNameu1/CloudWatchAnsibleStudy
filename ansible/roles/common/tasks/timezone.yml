@@ -1,0 +1,7 @@
+---
+- name: set zone to /etc/localtime
+  file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/localtime state=link force=yes
+    
+- name: set zone to /etc/sysconfig/clock
+  replace: dest=/etc/sysconfig/clock regexp='^ZONE=\"UTC\"' replace='ZONE="{{ timezone }}"'
+  notify: restart crond

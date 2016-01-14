@@ -1,0 +1,5 @@
+---
+jdk_version: 8u45
+rpm_filename: jdk-{{ jdk_version }}-linux-x64.rpm
+rpm_file_dir: /tmp/jdk
+rpm_file_path: '{{ rpm_file_dir }}/{{ rpm_filename }}'

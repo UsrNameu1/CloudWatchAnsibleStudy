@@ -1,0 +1,8 @@
+---
+- name: set locale to /etc/sysconfig/i18n
+  replace: dest=/etc/sysconfig/i18n regexp='^LANG=en_US\.UTF-8' replace='LANG={{ locale }}'
+
+- name: set locale to /etc/cloud/cloud.cfg
+  lineinfile: >
+    dest=/etc/cloud/cloud.cfg 
+    line='locale: {{ locale }}'

@@ -1,0 +1,10 @@
+---
+- hosts: '{{ hosts }}'
+  sudo: yes
+  roles:
+    - { role: yum }
+    - { role: common }
+    - { role: iptables }
+    - { role: java }
+    - { role: awslogs }
+    - { role: play, app_name: 'cloudwatchlogsample' }

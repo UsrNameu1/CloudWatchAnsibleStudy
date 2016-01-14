@@ -1,0 +1,13 @@
+---
+- name: create jdk rpm download directory
+  command: mkdir -p {{ rpm_file_dir }}
+  args:
+    creates: '{{ rpm_file_dir }}'
+
+- name: download oracle jdk
+  command: 'curl -L -o "{{ rpm_file_path }}" -b "oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/{{ jdk_version }}-b14/{{ rpm_filename }}'
+  args:
+    creates: '{{ rpm_file_path }}' 
+
+- name: install oracle jdk
+  yum: name={{ rpm_file_path }}

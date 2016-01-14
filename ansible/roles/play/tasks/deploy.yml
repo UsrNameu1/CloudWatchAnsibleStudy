@@ -1,0 +1,16 @@
+---
+- name: deploy play app
+  copy: src={{ build_dir }}/CloudWatchLogSample/target/universal/stage/ dest={{ app_root_dir }}/releases/{{ timestamp }}
+
+- name: add execute permission
+  file: path={{ app_root_dir }}/releases/{{ timestamp }}/bin/{{ app_name }} mode=a+x state=touch
+
+- name: deploy play init script
+  template: src=cloudwatchlogsample-init.j2 dest=/etc/init.d/{{ app_name }} owner=root group=root mode=0755
+
+- name: change symlink of current directory
+  file: path={{ app_root_dir }}/current src={{ app_root_dir }}/releases/{{ timestamp }} state=link
+  notify: restart play app
+
+- name: register play app as service
+  service: name={{ app_name }} state=started enabled=yes

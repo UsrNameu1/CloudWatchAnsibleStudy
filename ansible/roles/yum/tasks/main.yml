@@ -1,0 +1,7 @@
+---
+- name: update all packages
+  yum: name=* state=latest
+
+- name: install epel repo
+  yum: name=http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
+  ignore_errors: yes
