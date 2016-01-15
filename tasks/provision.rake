@@ -1,5 +1,4 @@
 require 'rake'
-require 'aws-sdk'
 
 desc "provision servers"
 task :provision do
